@@ -7,15 +7,7 @@ try {
     $db = Database::getInstance();
     $mysqli = $db->getConnection();
     $config = Database::getConfig($mysqli);
-    
-    // 检查是否需要登录限制
-    if ($config && 
-        isset($config['login_restriction']) && 
-        filter_var($config['login_restriction'], FILTER_VALIDATE_BOOLEAN) && 
-        (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'])) {
-        header('Location: /admin');
-        exit();
-    }
+    // 移除前台登录限制，无论 login_restriction 配置如何，首页都可直接访问
 } catch (Exception $e) {
     die($e->getMessage());
 }
@@ -33,13 +25,13 @@ try {
 </head>
 <body>
     <header class="blur">
-        <a href="https://nav.520jacky.ip-ddns.com/" target="_blank" title="主页" class="header-link">
+        <a href="https://nav.520jacky.dpdns.org/" target="_blank" title="主页" class="header-link">
             <img src="static/images/svg/home.svg" alt="主页" class="header-icon" />
         </a>
-        <a href="https://blog.520jacky.ip-ddns.com/" target="_blank" title="博客" class="header-link">
+        <a href="https://blog.520jacky.dpdns.org/" target="_blank" title="博客" class="header-link">
             <img src="static/images/svg/Blog.svg" alt="博客" class="header-icon" />
         </a>
-        <a href="https://github.com/BAYUEQI/PixPro/" target="_blank" title="Github" class="header-link">
+        <a href="https://github.com/BAYUEQI/ZQ-IMG/" target="_blank" title="Github" class="header-link">
             <img src="static/images/svg/Github.svg" alt="Github" class="header-icon" />
         </a>
         <a href="/admin/" target="_blank" title="后台" class="header-link">
